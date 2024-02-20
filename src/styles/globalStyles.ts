@@ -167,11 +167,13 @@ export const FULL_HEIGHT = css`
   height: 100%;
 `;
 export const UNSELECTABLE = css`
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+  user-select: none; /* Standard syntax */
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  pointer-events: none; /* Disable pointer events */
 `;
+
 export const BUTTON = css`
   ${UNSELECTABLE}
   border: none;
