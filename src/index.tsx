@@ -37,11 +37,14 @@ const ConnectedApp = ({ Component }: Props) => {
               backgroundColor: "#18181f",
               width: " 100vw",
               height: "100vh",
+              color: "#fff",
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
             }}
-          ></div>
+          >
+            loading the font
+          </div>
         )}
       </HelmetProvider>
     </ReduxProvider>

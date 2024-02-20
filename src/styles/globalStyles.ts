@@ -3,23 +3,7 @@ import { createGlobalStyle, css } from "styled-components";
 const GlobalStyle = createGlobalStyle`
 
 :root {
-  --button-regular: #2f242c;
-  --button-regular-hover: #523d4c;
-  --button-primary: #A42CD6;
-  --button-secondary: #502274;
-  --button-bright: #A42CD6;
-  --button-bright-hover: #8d3ead;
-  --title-text: #fff;
-  --disabled-text: #84868a;
-  --input-token-bg: #422954;
-  --input-token-border: #805f5e;
-  --input-token-border-hover: #d1a9a7;
-  --button-text-unhover:#d1bfbe;
-  --token-button-bg-hover: #694882;
-  --token-button-bg: #5a3e70;
-  --error-red: #d32f2f;
-  --search-input-border: #9F9A9D;
-
+  --bg-color:#25292F;
 }
 .darkTheme {
 
@@ -33,6 +17,11 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  background-color: var(--bg-color);
+}
+*{
+  font-family:"Inter" !important;
+  box-sizing:border-box;
 }
 `;
 

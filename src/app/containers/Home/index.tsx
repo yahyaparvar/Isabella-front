@@ -25,12 +25,11 @@ export function Home(props: Props) {
   const dispatch = useDispatch();
 
   return (
-    <>
+    <div>
       <Helmet>
         <title>Home</title>
         <meta name="description" content="Description of Home" />
       </Helmet>
-      <div>Home</div>
-    </>
+    </div>
   );
 }
