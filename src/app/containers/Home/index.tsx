@@ -12,6 +12,7 @@ import dropSrc from "app/assets/svg/sa.png";
 import logo from "app/assets/svg/logo.svg";
 //@ts-ignore
 import mov from "app/assets/svg/mov.mp4";
+import ChatArea from "./chatArea";
 
 interface Props {}
 
@@ -33,10 +34,11 @@ export function Home(props: Props) {
   return (
     <>
       <Helmet>
-        <title>Home</title>
+        <title>Isabella</title>
         <meta name="description" content="Description of Home" />
       </Helmet>
       <Wrapper onClick={toggleVideoVisibility}>
+        <ChatArea></ChatArea>
         <RecordBackground isVideoVisible={isVideoVisible} />
       </Wrapper>
     </>

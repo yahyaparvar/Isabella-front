@@ -1,9 +1,17 @@
-import React from 'react'
+import React from "react";
+import { Wrapper } from "./styles";
+import RecordMessage from "./record/recorder";
 
 const ChatArea = () => {
   return (
-    <div>ChatArea</div>
-  )
-}
+    <Wrapper>
+      <RecordMessage
+        handleStop={() => {
+          console.log("stopped");
+        }}
+      ></RecordMessage>
+    </Wrapper>
+  );
+};
 
-export default ChatArea
+export default ChatArea;
