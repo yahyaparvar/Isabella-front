@@ -4,12 +4,16 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 import { COLUMN_CENTER } from "styles/globalStyles";
 import { Pause, RecordIcon } from "./Icon";
+import { useDispatch, useSelector } from "react-redux";
+import { homeActions } from "../../slice";
+import { homeSelectors } from "../../selectors";
 
 // Styled button component
 const RecordButton = styled.button`
   background: linear-gradient(to right, #6366f1, #0ea5e9, #10b981);
-  padding: 1rem;
   width: 80px;
+  padding: 1rem;
+
   height: 80px;
   border-radius: 100%;
   border: none;
@@ -28,14 +32,16 @@ const Message = styled.p`
 
 const Wrapper = styled.div`
   ${COLUMN_CENTER}
+  position: fixed;
+  right: 85px;
+  bottom: 85px;
 `;
 
-type Props = {
-  handleStop: () => void; // Adjust the type for handleStop function
-};
+type Props = {};
 
-const RecordMessage: React.FC<Props> = ({ handleStop }) => {
-  const [isRecording, setIsRecording] = useState<boolean>(false);
+const RecordMessage: React.FC<Props> = () => {
+  const micStatus = useSelector(homeSelectors.selectStatus);
+  const dispatch = useDispatch();
 
   const handleToggleRecording = ({
     startRecording,
@@ -44,15 +50,17 @@ const RecordMessage: React.FC<Props> = ({ handleStop }) => {
     startRecording: () => void;
     stopRecording: () => void;
   }): void => {
-    window.location.replace("/#bottom");
-    if (isRecording) {
+    if (micStatus === "recording") {
+      dispatch(homeActions.setStatus("stopped"));
       stopRecording();
     } else {
+      dispatch(homeActions.setStatus("recording"));
       startRecording();
     }
-    setIsRecording((prevState: boolean) => !prevState);
   };
-
+  const handleStop = (blobUrl: string) => {
+    dispatch(homeActions.sendAudio({ blobUrl }));
+  };
   return (
     <ReactMediaRecorder
       audio
@@ -64,19 +72,29 @@ const RecordMessage: React.FC<Props> = ({ handleStop }) => {
               handleToggleRecording({ startRecording, stopRecording })
             }
           >
-            {status === "recording" ? (
+            {micStatus === "recording" ? (
               <motion.div
+                key="pause"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                transition={{ duration: 0.08, ease: "easeInOut" }}
+                transition={{ duration: 0.1, ease: "easeInOut" }}
               >
                 <Pause />
               </motion.div>
             ) : (
-              <RecordIcon classText={"stopped"} />
+              <motion.div
+                key="record"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.1, ease: "easeInOut" }}
+              >
+                <RecordIcon classText={"stopped"} />
+              </motion.div>
             )}
           </RecordButton>
+          
         </Wrapper>
       )}
     />

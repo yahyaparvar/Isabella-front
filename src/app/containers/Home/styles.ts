@@ -12,7 +12,7 @@ export const Wrapper = styled.div`
 export const StaticDrop = styled.img`
   position: fixed;
   top: -210px;
-  left: -180px;
+  left: -320px;
   width: 1200px;
   ${UNSELECTABLE}
   height: 1200px;
@@ -22,14 +22,14 @@ export const Logo = styled.img`
   z-index: 2;
   position: fixed;
   top: 285px;
-  left: 360px;
+  left: 260px;
   height: 230px;
 `;
 export const RecordAnimation = styled.video`
   ${UNSELECTABLE}
   position: fixed;
   top: -467px;
-  left: -467px;
+  left: -607px;
   height: 1730px;
   width: 1730px;
 `;
